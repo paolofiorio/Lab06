@@ -1,6 +1,7 @@
 package it.polito.tdp.meteo;
 
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polito.tdp.meteo.bean.Citta;
@@ -16,6 +17,7 @@ public class Model {
 
 	private List<Citta> citta;
 	
+	private List<Citta> migliori;
 
 
 	public Model() {
@@ -33,9 +35,26 @@ public class Model {
 		return dao.getAvgRilevamentiLocalitaMese(citta, mese);
 	}
 
-	public String trovaSequenza(int mese) {
+	public List<Citta> trovaSequenza(Month mese) {
+		List<Citta> parziale = new ArrayList<Citta>();
+		this.migliori=null;
+		
+		MeteoDAO dao = new MeteoDAO();
 
-		return "TODO!";
+		
+		for (Citta c : citta) {
+			c.setRilevamenti(dao.getAllRilevamentiLocalitaMese(mese, c));
+		}
+		
+		cerca(parziale, 0);
+		return migliori;
+	}
+
+	private void cerca(List<Citta> parziale, int livello) {
+		
+		
+		
+		
 	}
 
 	private Double punteggioSoluzione(List<SimpleCity> soluzioneCandidata) {

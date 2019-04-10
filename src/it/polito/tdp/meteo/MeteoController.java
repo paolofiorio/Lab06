@@ -2,6 +2,7 @@ package it.polito.tdp.meteo;
 
 import java.net.URL;
 import java.time.Month;
+import java.util.List;
 import java.util.ResourceBundle;
 import it.polito.tdp.meteo.bean.Citta;
 
@@ -35,6 +36,11 @@ public class MeteoController {
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
 		Month m = boxMese.getValue() ;
+		if(m!=null) {
+			List<Citta> best= model.trovaSequenza(m);
+			txtResult.appendText("Sequenza ottima per il mese "+m.toString()+": \n");
+			txtResult.appendText(best+"\n");
+		}
 
 	}
 
