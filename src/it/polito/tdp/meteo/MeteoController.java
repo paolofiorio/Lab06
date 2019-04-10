@@ -35,6 +35,7 @@ public class MeteoController {
 
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
+		txtResult.clear();
 		Month m = boxMese.getValue() ;
 		if(m!=null) {
 			List<Citta> best= model.trovaSequenza(m);
@@ -46,6 +47,7 @@ public class MeteoController {
 
 	@FXML
 	void doCalcolaUmidita(ActionEvent event) {
+		txtResult.clear();
 		Month m = boxMese.getValue() ;
 		if(m!=null) {
 			txtResult.appendText(String.format("Dati del mese %s\n", m.toString()));
