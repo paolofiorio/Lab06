@@ -3,6 +3,7 @@ package it.polito.tdp.meteo;
 import java.net.URL;
 import java.time.Month;
 import java.util.ResourceBundle;
+import it.polito.tdp.meteo.bean.Citta;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,12 +34,21 @@ public class MeteoController {
 
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
+		Month m = boxMese.getValue() ;
 
 	}
 
 	@FXML
 	void doCalcolaUmidita(ActionEvent event) {
+		Month m = boxMese.getValue() ;
+		if(m!=null) {
+			txtResult.appendText(String.format("Dati del mese %s\n", m.toString()));
 
+			for(Citta c: model.getCitta()) {
+				Double u = model.getUmiditaMedia(m, c);
+				txtResult.appendText(String.format("Città %s: umidità %f\n", c.getNome(), u));
+			}
+}
 	}
 
 	@FXML
